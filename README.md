@@ -14,4 +14,5 @@ This is a working version, but there are still things to be done.
 
 
 
-Eclipse project
+- Python Version (Works better)
+- Java Version 
