@@ -14,5 +14,5 @@ This is a working version, but there are still things to be done.
 
 
 
-### - Python Version (Works better)
-### - Java Version 
+### - Python Version
+
