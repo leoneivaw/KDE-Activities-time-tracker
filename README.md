@@ -1,4 +1,4 @@
-KDE Activities time tracker
+# KDE Activities time tracker
 
 Feel free to copy and improve the project.
 
@@ -14,5 +14,5 @@ This is a working version, but there are still things to be done.
 
 
 
-- Python Version (Works better)
-- Java Version 
+### - Python Version (Works better)
+### - Java Version 
