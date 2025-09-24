@@ -1,0 +1,56 @@
+
+
+PAROU EM: Achar uma forma de sair do programa e mudar a chave na tabela do BD chavesessao, para o programa a próxima instância poder abrir.
+
+BUG - ver isso: https://stackoverflow.com/questions/5747803/running-code-on-program-exit-in-java
+
+Main
+    - Menu para iniciar o loop ou mostrar relatório.
+  ok  - Loop chamando cron While 1:
+    - 
+Config
+   ok - Tempo loop - Guardar em um TXT na pasta do programa. ao invés de bd
+    - Próximos concursos. Entra a data de mais de um concurso para o countDown 
+Cron
+   Rotina toda criada e funcionando. não está igual o descritivo, olhar rotinas if.
+                        - Verifica a data do último registro e compara com a data de hoje.
+                           - Se for DIFERENTE, chama Atividade.CriarAtividade() de qualquer forma. (Dessa forma já previne o problema de rodar a meia noite)
+                           - Se for IGUAL:
+                              ok - Verifica se a última atividade é igual à atividade atual atividade.comparaAtividade(). (Dessa forma já previne o problema de rodar a meia noite)
+                                       - Se for DIFERENTE, chama Atividade.CriarAtividade().
+                                       - Se for igual:
+                                            - Rotina para decidir se cria um novo registro ou altera o último. Altera se o último for da sessão atual. Cria se for de sessão passada.
+                                                - Verifica se o fim da atividade é maior que o tempo do loop. // não funciona, pois como vamos alterar o último registro, vai ter registro com vários minutos de diferença.
+                                                    Se a chave for diferente, chama Atividade.CriarAtividade()
+                                                    - Else » chama Atividade.AlterarAtividade().
+Atividade
+   ok - BDVazio » Verifica se a Atividade.PegaLog() está vazia. Se estiver vazio, chama Atividade.CriarAtividade().
+   ok - PegaLog » Pega a última atividade do BD e envia dois elementos: String atividade e Date
+   ok - PegarAtividade » Pega a atividade atual do sistema. Fazer com proteção de retirar quebra de linha
+   ok - CriarAtividade » Recebe dados do cron e cria.
+   ok - AlterarAtividade » Recebe dados do cron e altera a última atividade.
+Mostrador(Apresenta o tempo gasto das atividades do dia e percentual de cada atividade em relação às demais.)
+    - Mostra data de hoje
+    - Destaca a atividade atual do sistema.
+    - Mostra o loop atual em countDown. Achar um countDown em JAVA.
+    - Mostra quantos dias faltam para cada concurso configurado. Usar for para pegar todos os concursos do banco.
+        - Tratar para concursos que já passaram. 
+Registros (Mostra um log consolidade do tempo das atividades gasto por dia e por atividade.)
+    - Fazer um filtro com Scanner para início do relatório e fim do relatório. (Lembre que apresenta os dados por dia)
+    - Usar um for para calcular por dia
+    - Opção para limpara log
+        - pede para confirmar a limpeza, digitando algo como: "Ciente da consequência"
+    - Atalho para voltar para o Main
+TratarData
+   ok - TratarData.DataParaString() - Se precisar para salvar no banco de dados.
+   ok - TratarData.StringParaData() - Usado quando buscar do banco de dados.
+   ok - TratarData.PegarData() - Só envia a data para fazer comparações.
+   ok - TratarData.PegarHora() - Só usar se não conseguir comparar horário com a data completa. mas acho que dá.
+
+
+
+================
+GERAL  
+    - Rotina para evitar abrir duas instâncias.
+        - http://sauronsoftware.it/projects/junique/manual.php
+    - Fazer um script que fica consultando o tempo das atividaes igual ao display para usar como widget.  (Só consulta)
